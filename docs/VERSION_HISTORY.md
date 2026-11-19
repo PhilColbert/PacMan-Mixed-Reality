@@ -24,3 +24,8 @@
 - Updated setup instructions, manifest, change register and README.
 - All gameplay scripts, package declarations and editor utility are CARRIED FORWARD unchanged from v0.5.
 - This is a metadata/documentation correction only. Unity import, compilation, scene generation, Android build and Quest device testing remain unverified.
+
+## 0.7 — Unity patch metadata correction (HPAC-CHG-007)
+- Corrected the Editor version from 6000.3.2f1 to 6000.3.2f0 after closer inspection of the Unity Hub screenshot, including the installation folder path.
+- Updated README, setup instructions, manifest and change register.
+- No gameplay or editor source changed. Unity import, compilation, scene generation, Android build and Quest testing remain unverified.

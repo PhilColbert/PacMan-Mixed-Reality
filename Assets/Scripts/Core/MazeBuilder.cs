@@ -25,7 +25,12 @@ namespace PacManMR
                 position.y = transform.position.y + originHeight;
                 switch (cell.value)
                 {
-                    case '#': CreateWall(position); break;
+                    case '#':
+                        bool horizontal = IsWall(cell.row, cell.col - 1) || IsWall(cell.row, cell.col + 1);
+                        bool vertical = IsWall(cell.row - 1, cell.col) || IsWall(cell.row + 1, cell.col);
+                        if (!horizontal && !vertical) horizontal = true;
+                        CreateWall(position, horizontal, vertical);
+                        break;
                     case '.': CreatePickup(position, false); break;
                     case 'o': CreatePickup(position, true); break;
                     case 'P':
@@ -36,13 +41,28 @@ namespace PacManMR
             }
         }
 
-        private void CreateWall(Vector3 floorPosition)
+        private static bool IsWall(int row, int col)
+        {
+            if (row < 0 || row >= MazeDefinition.Rows.Length) return false;
+            if (col < 0 || col >= MazeDefinition.Rows[row].Length) return false;
+            return MazeDefinition.Rows[row][col] == '#';
+        }
+
+        private void CreateWall(Vector3 floorPosition, bool horizontal, bool vertical)
+        {
+            if (horizontal) CreateWallSegment(floorPosition, true);
+            if (vertical) CreateWallSegment(floorPosition, false);
+        }
+
+        private void CreateWallSegment(Vector3 floorPosition, bool horizontal)
         {
             var wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            wall.name = "Maze Wall";
+            wall.name = horizontal ? "Maze Wall Horizontal" : "Maze Wall Vertical";
             wall.transform.SetParent(mazeRoot, true);
             wall.transform.position = floorPosition + Vector3.up * (MazeDefinition.WallHeight * 0.5f);
-            wall.transform.localScale = new Vector3(MazeDefinition.TileSize, MazeDefinition.WallHeight, MazeDefinition.WallThickness);
+            wall.transform.localScale = horizontal
+                ? new Vector3(MazeDefinition.TileSize, MazeDefinition.WallHeight, MazeDefinition.WallThickness)
+                : new Vector3(MazeDefinition.WallThickness, MazeDefinition.WallHeight, MazeDefinition.TileSize);
             if (wallMaterial != null) wall.GetComponent<Renderer>().sharedMaterial = wallMaterial;
             wall.layer = LayerMask.NameToLayer("Default");
         }

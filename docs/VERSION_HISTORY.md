@@ -34,3 +34,8 @@
 ## 0.9 — Unity UI dependency correction (HPAC-CHG-009)
 - Added com.unity.ugui 2.0.0 to Packages/manifest.json. The existing HudPresenter.cs uses UnityEngine.UI, which is supplied by the UGUI package; the prior manifest declared only the built-in UI module and omitted UGUI.
 - No C# source files changed. Package resolution and compilation remain to be verified in the local Unity Editor.
+
+## 1.0 — Unity 6 prototype scene font fix (HPAC-CHG-010)
+- Replaced the obsolete built-in `Arial.ttf` lookup in `Assets/Editor/HPACProjectSetup.cs` with `LegacyRuntime.ttf`, as directed by the Unity 6 runtime exception reported during scene generation.
+- No gameplay scripts, maze data, scene dimensions, camera placement, HUD layout or package dependencies changed.
+- Other unchanged files are CARRIED FORWARD. Source edit is committed; scene generation and subsequent Unity compilation remain unverified until rerun locally.

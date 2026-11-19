@@ -2,11 +2,11 @@
 
 Project ID: HPAC-001  
 Repository: https://github.com/PhilColbert/PacMan-Mixed-Reality  
-Baseline: 0.1  
-Status: Project records established; implementation not yet started.
+Current version: 0.3  
+Status: First Unity gameplay source scaffold in progress; no playable build yet.
 
 ## Purpose
-Build a playable first-person mixed-reality Pac-Man-inspired game for Meta Quest 3. The player physically moves through a human-scale maze overlaid on a real environment.
+Build a first-person mixed-reality Pac-Man-inspired game for Meta Quest 3. The player physically moves through a human-scale maze overlaid on a real environment.
 
 ## Requirements
 | ID | Requirement | Status |
@@ -25,24 +25,32 @@ Build a playable first-person mixed-reality Pac-Man-inspired game for Meta Quest
 | PAC-012 | Safety boundary, stop behaviour and collision mitigation | UNRESOLVED |
 | PAC-013 | Multiplayer | UNRESOLVED |
 | PAC-014 | Level progression | PROPOSED |
-| PAC-015 | Game audio: original or appropriately licensed arcade-style music and effects | PROPOSED |
+| PAC-015 | Original or appropriately licensed arcade-style music and effects | PROPOSED |
+
+## Prototype implementation decisions
+- Unity 2022.3 LTS is the initial project target (PROPOSED; confirm against installed Unity/Meta SDK compatibility before device build).
+- Gameplay scripts are kept independent of a specific XR vendor SDK. The XR camera/head transform is assigned to the player-tracking component in the Inspector.
+- Maze is generated from a text grid and is a human-scale adaptation, not an exact copy of copyrighted arcade level artwork.
+- Initial prototype uses local XR head position for movement and proximity-based pickups/ghost AI. It does not solve outdoor world anchoring or reliable 20m-scale tracking.
+- Mixed-reality passthrough configuration requires Meta XR SDK/project configuration and headset permissions; it is not claimed complete in this source scaffold.
 
 ## Design constraints
-- Do not claim the original arcade map is reproduced exactly; the target is a recognisable human-scale adaptation.
-- Physical running in outdoor passthrough presents safety risks. Begin stationary/slow-walking tests in a clear bounded area with a spotter. Direct sunlight can affect headset tracking and damage headset cameras/sensors.
+- Do not claim the original arcade map is reproduced exactly.
+- Physical running in outdoor passthrough is hazardous. Prototype indoors or in a clear, bounded, slow-walking test area with a spotter. Direct sunlight can damage Quest cameras/sensors and disrupt tracking.
 - The 20m × 20m area is a target envelope, not a validated safe operating zone.
-- Do not select UWB, GPS or another tracking solution without a measured prototype and accuracy test.
-- Use original or appropriately licensed audio and visual assets. Do not bundle extracted arcade ROM/game files or unlicensed original Pac-Man recordings.
+- Do not select UWB, GPS or another tracking solution without measured prototype evidence.
+- Use original or appropriately licensed audio. Do not bundle extracted ROM/game files or unlicensed original Pac-Man recordings.
 - Check trademark/licensing implications before public distribution.
 
 ## Milestones
-1. Project records and repository baseline.
-2. Technical proof of concept: Quest passthrough, tracking, calibration and virtual wall rendering.
-3. Human-scale maze and navigation.
-4. Gameplay: pellets, score, power pellets, ghosts and lives.
-5. Audio integration.
-6. Device testing, safety validation and performance profiling.
-7. Release candidate only after regressions are closed.
+1. Project records and repository baseline — complete.
+2. Unity gameplay source scaffold — in progress.
+3. Quest passthrough, tracking, calibration and virtual wall rendering — not verified.
+4. Human-scale maze and navigation.
+5. Pellets, score, power pellets, ghosts and lives.
+6. Audio integration.
+7. Device testing, safety validation and performance profiling.
+8. Release candidate only after regressions are closed.
 
 ## Verification labels
-Use only: INSPECTED, AUTOMATED-TESTED, COMPILED, DEVICE-TESTED, UNVERIFIED. Design inspection is not evidence of headset testing.
+INSPECTED, AUTOMATED-TESTED, COMPILED, DEVICE-TESTED, UNVERIFIED. Never infer one level from another.

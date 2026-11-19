@@ -2,8 +2,8 @@
 
 Meta Quest 3 mixed-reality Pac-Man-inspired game for a human-scale 20m × 20m play area.
 
-## Current status — v0.3
-First Unity gameplay source scaffold is being added. This is not yet a complete Unity project, APK or playable headset build.
+## Current status — v0.4
+First Unity gameplay source scaffold is committed. This is not yet a complete Unity project, APK or playable headset build.
 
 ## Records
 - [Specification](docs/SPECIFICATION.md)

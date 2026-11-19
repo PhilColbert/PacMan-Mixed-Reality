@@ -31,7 +31,7 @@ Build a first-person mixed-reality Pac-Man-inspired game for Meta Quest 3. The p
 - Unity 2022.3 LTS is the initial project target (PROPOSED; confirm against installed Unity/Meta SDK compatibility before device build).
 - Gameplay scripts are kept independent of a specific XR vendor SDK. The XR camera/head transform is assigned to the player-tracking component in the Inspector.
 - Maze uses the canonical original 28 × 31 playfield data: 240 dots, 4 energizers, ghost house, gate and side tunnel.
-- Initial prototype uses local XR head position for movement and proximity-based pickups/ghost AI. It does not solve outdoor world anchoring or reliable 20m-scale tracking.
+- Initial prototype uses local XR head position for movement and proximity-based pickups/ghost AI. It does not solve outdoor world anchoring or reliable 30m-scale tracking.
 - Mixed-reality passthrough configuration requires Meta XR SDK/project configuration and headset permissions; it is not claimed complete in this source scaffold.
 
 ## Design constraints

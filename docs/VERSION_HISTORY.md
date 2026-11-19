@@ -49,3 +49,11 @@
 - Updated `MazeBuilder` to inspect adjacent wall cells and generate horizontal and/or vertical wall segments. Corners and junctions receive both orientations; straight runs receive the matching orientation.
 - `MazeDefinition.cs`, maze layout, tile size, wall height, camera, HUD and editor generator are unchanged and CARRIED FORWARD.
 - Source and records committed and read back. Unity compilation, scene regeneration and visual inspection remain unverified pending the user's local test.
+
+## 1.3 — Canonical arcade maze and 30m scale (HPAC-CHG-013)
+- Replaced the incorrect 15×15 placeholder with the canonical original 28×31 arcade playfield from `sean-foley/pacman/docs/maze.txt`; its project documentation records 240 dots and 4 energizers.
+- Preserved map characters and significant spaces: walls, 240 dots, 4 energizers, 18 house tiles, 2 gate tiles and side tunnel.
+- Added arcade player and four ghost spawn coordinates. Wall geometry now uses full grid-aligned wall tiles; ghost-house floor and gate are represented. Preview floor is 30m and camera is linked to player spawn.
+- Grid pitch is 30/31m (0.967742m), giving a 27.0968m × 30m map centred within the 30m × 30m envelope.
+- Automated checks passed: 31 rows, 28 columns each, left-right symmetry, 240 dots, 4 energizers, 18 house tiles, 2 gate tiles and all pellets reachable from player start using tunnel wrap.
+- Unity compilation, generated-scene visual inspection, Android build and Quest device testing remain UNVERIFIED.

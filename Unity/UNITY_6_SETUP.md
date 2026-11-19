@@ -19,3 +19,6 @@ The project includes Unity XR Management and OpenXR package dependencies. It doe
 - The 15×15 test layout at 1.2m/cell spans 18m × 18m, not the full 20m × 20m target. Maze design and playable footprint remain to be reconciled before a release build.
 - Unity compilation, scene execution, Android build and Quest device tests must be performed locally; none is claimed here.
 - Initial testing must be indoors, clear and slow, with a spotter. Passthrough is not collision protection.
+
+## UI package dependency
+The project manifest declares com.unity.ugui 2.0.0 because HudPresenter uses UnityEngine.UI. Allow Unity Package Manager to resolve this dependency on first open. Confirm the Console no longer reports the missing UnityEngine.UI namespace before proceeding.

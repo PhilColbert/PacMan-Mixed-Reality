@@ -19,13 +19,14 @@
 - Existing gameplay source files are CARRIED FORWARD unchanged from v0.4; no rebuild or compilation claim.
 - Not yet compiled, run, Android-built or device-tested. Meta XR SDK/passthrough remains an explicit integration requirement.
 
-## 0.6 — Installed Unity patch correction (HPAC-CHG-006)
-- Updated ProjectSettings/ProjectVersion.txt from 6000.3.0f1 to 6000.3.2f1, matching the Unity 6.3 LTS installation visible in the user's screenshot.
-- Updated setup instructions, manifest, change register and README.
-- All gameplay scripts, package declarations and editor utility are CARRIED FORWARD unchanged from v0.5.
-- This is a metadata/documentation correction only. Unity import, compilation, scene generation, Android build and Quest device testing remain unverified.
+## 0.6 — Incorrect Unity patch metadata (HPAC-CHG-006)
+- Set Editor metadata to 6000.3.2f1 based on a misread screenshot. Superseded.
 
-## 0.7 — Unity patch metadata correction (HPAC-CHG-007)
-- Corrected the Editor version from 6000.3.2f1 to 6000.3.2f0 after closer inspection of the Unity Hub screenshot, including the installation folder path.
-- Updated README, setup instructions, manifest and change register.
-- No gameplay or editor source changed. Unity import, compilation, scene generation, Android build and Quest testing remain unverified.
+## 0.7 — Incorrect Unity patch metadata (HPAC-CHG-007)
+- Set Editor metadata to 6000.3.2f0 after a second misread. Superseded.
+
+## 0.8 — Confirmed Unity Editor version (HPAC-CHG-008)
+- Set ProjectSettings/ProjectVersion.txt to 6000.3.26f1.
+- Added the release changeset identifier de8167e7440c to m_EditorVersionWithRevision, based on the official Unity 6000.3.26f1 release page.
+- Updated README, setup instructions, manifest and change register. Gameplay scripts, packages and editor utility remain CARRIED FORWARD unchanged.
+- GitHub file readback performed. Unity Hub opening, import, compilation, scene generation, Android build and Quest device testing remain unverified.

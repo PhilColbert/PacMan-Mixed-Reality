@@ -1,15 +1,16 @@
 # Pac-Man Mixed Reality
 
-A Meta Quest 3 mixed-reality Pac-Man-inspired game designed for a human-scale 20m × 20m play area.
+Meta Quest 3 mixed-reality Pac-Man-inspired game for a human-scale 20m × 20m play area.
 
-## Current status
-Project records established. No Unity game code or playable build exists yet.
+## Current status — v0.3
+First Unity gameplay source scaffold is being added. This is not yet a complete Unity project, APK or playable headset build.
 
-## Project records
+## Records
 - [Specification](docs/SPECIFICATION.md)
 - [Change register](docs/CHANGE_REGISTER.md)
-- [File manifest](docs/MANIFEST.md)
+- [Manifest](docs/MANIFEST.md)
 - [Version history](docs/VERSION_HISTORY.md)
 - [Audio asset register](docs/AUDIO_ASSETS.md)
 
-Implementation begins only after this baseline is committed and verified.
+## Development
+See [Unity setup and prototype limitations](Unity/README.md). Unity 2022.3 LTS is the proposed initial editor target. Meta XR SDK installation, passthrough configuration, scene authoring, compilation and Quest device tests remain outstanding.

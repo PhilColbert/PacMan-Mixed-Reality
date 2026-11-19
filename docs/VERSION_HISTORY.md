@@ -44,3 +44,8 @@
 - The generator now explicitly calls `MazeBuilder.Build()` before saving the prototype scene. The prior implementation relied only on `Start()`, which does not run while the Editor is generating/saving the scene; this left the saved scene with only the floor until entering Play mode.
 - No maze layout, dimensions, gameplay scripts, camera placement or HUD layout changed.
 - Scene regeneration and visual validation remain unverified until performed in the user's Unity Editor.
+
+## 1.2 — Horizontal and vertical maze wall geometry (HPAC-CHG-012)
+- Updated `MazeBuilder` to inspect adjacent wall cells and generate horizontal and/or vertical wall segments. Corners and junctions receive both orientations; straight runs receive the matching orientation.
+- `MazeDefinition.cs`, maze layout, tile size, wall height, camera, HUD and editor generator are unchanged and CARRIED FORWARD.
+- Source and records committed and read back. Unity compilation, scene regeneration and visual inspection remain unverified pending the user's local test.

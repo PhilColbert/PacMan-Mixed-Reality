@@ -69,7 +69,7 @@ namespace HPAC.EditorTools
                 var r = go.GetComponent<RectTransform>();
                 r.anchorMin = min; r.anchorMax = max; r.offsetMin = new Vector2(12, 4); r.offsetMax = new Vector2(-12, -4);
                 var t = go.GetComponent<Text>();
-                t.text = initial; t.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+                t.text = initial; t.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
                 t.fontSize = 28; t.color = Color.white; t.alignment = TextAnchor.MiddleCenter;
                 return t;
             }

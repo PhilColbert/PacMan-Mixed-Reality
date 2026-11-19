@@ -13,3 +13,5 @@
 | HPAC-CHG-009 | Fix HudPresenter compile error caused by missing Unity UI package | 0.8 | Add com.unity.ugui 2.0.0 to Unity package manifest; update records | Dependency declared; Unity package resolution and compilation awaiting local verification | 0.9 |
 
 | HPAC-CHG-010 | Fix Unity 6 prototype scene generator font exception | 0.9 | Replace obsolete built-in Arial.ttf reference with LegacyRuntime.ttf in editor scene generator; update records only | Source correction committed; local scene generation must be rerun to verify | 1.0 |
+
+| HPAC-CHG-011 | Ensure generated prototype scene contains visible maze geometry before saving | 1.0 | Invoke MazeBuilder.Build() from the Editor generator after creating the Maze object; update project records | Source correction committed; Unity scene regeneration and visual validation required | 1.1 |

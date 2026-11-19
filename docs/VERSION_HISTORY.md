@@ -1,21 +1,20 @@
 # Version History
 
 ## 0.1 — Repository and specification baseline
-- Confirmed repository exists and was empty before adding files.
-- Added initial project records only.
+- Confirmed repository existed and was empty; added initial project records.
 
 ## 0.2 — Audio sourcing research
-- Recorded candidate CC0 audio sources and official licensing route.
-- No audio downloaded or integrated.
+- Recorded candidate CC0 audio sources and official licensing route; no audio downloaded or integrated.
 
-## 0.3 — First gameplay source scaffold
-- Added Unity C# source for maze generation, player proximity collection, scoring/lives/power state, ghost movement and HUD.
-- Added setup instructions and explicit XR/passthrough limitations.
-- No Unity editor available in this workflow; source is not compiled or device-tested.
-- Audio register is carried forward unchanged from 0.2.
+## 0.3 — Gameplay source scaffold
+- Added Unity C# source for maze generation, pickups, scoring/lives/power state, ghost movement and HUD.
+- No Unity compilation or headset testing claimed.
 
 ## 0.4 — Maze grid correction
-- Static inspection found inconsistent row lengths in the first 15×15 maze draft (some rows were 16 columns).
-- Logged HPAC-CHG-004 before editing the source.
-- Corrected all rows to exactly 15 columns; verification re-run pending readback.
-- No unrelated source files changed.
+- Corrected all 15 maze rows to exactly 15 columns; static validation performed.
+
+## 0.5 — Unity 6.3 project foundation (HPAC-CHG-005)
+- Added Unity project version metadata, package manifest for XR Management/OpenXR, build-scene settings and an Editor menu utility that generates a prototype preview scene and HUD.
+- Added Unity 6.3 setup and integration status documentation.
+- Existing gameplay source files are CARRIED FORWARD unchanged from v0.4; no rebuild or compilation claim.
+- Not yet compiled, run, Android-built or device-tested. Meta XR SDK/passthrough remains an explicit integration requirement.

@@ -1,9 +1,9 @@
 # Unity 6.3 project setup
 
-This repository is structured as a Unity project targeting Unity 6.3 LTS, Editor version **6000.3.2f0**. This matches the Unity Hub installation shown by the user. Open the repository root in Unity Hub, not the earlier empty project created separately.
+This repository is structured as a Unity project targeting Unity 6.3 LTS, Editor version **6000.3.26f1**. The Editor revision is recorded as changeset de8167e7440c. Open the repository root in Unity Hub, not the earlier empty project created separately.
 
 ## First open
-1. In Unity Hub, select the installed **Unity 6.3 LTS (6000.3.2f0)** Editor.
+1. In Unity Hub, select the installed **Unity 6.3 LTS (6000.3.26f1)** Editor.
 2. Open the extracted repository root as the project.
 3. Let Unity resolve packages and finish importing.
 4. Open **Tools > HPAC > Generate Prototype Scene**.

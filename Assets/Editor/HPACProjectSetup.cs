@@ -22,7 +22,7 @@ namespace HPAC.EditorTools
             var floor = GameObject.CreatePrimitive(PrimitiveType.Plane);
             floor.name = "Play Area Floor";
             floor.transform.position = Vector3.zero;
-            floor.transform.localScale = new Vector3(2f, 1f, 2f);
+            floor.transform.localScale = new Vector3(3f, 1f, 3f);
             var floorMat = new Material(Shader.Find("Universal Render Pipeline/Lit") ?? Shader.Find("Standard"));
             floorMat.color = new Color(0.10f, 0.12f, 0.16f);
             floor.GetComponent<Renderer>().sharedMaterial = floorMat;
@@ -45,6 +45,9 @@ namespace HPAC.EditorTools
             var maze = new GameObject("Maze");
             var builder = maze.AddComponent<MazeBuilder>();
             maze.transform.position = Vector3.zero;
+            var builderSettings = new SerializedObject(builder);
+            builderSettings.FindProperty("playerStart").objectReferenceValue = camera.transform;
+            builderSettings.ApplyModifiedPropertiesWithoutUndo();
             builder.Build(); // Build once in edit mode so the generated scene contains visible maze geometry.
 
             var hudCanvas = new GameObject("HUD", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
@@ -87,8 +90,6 @@ namespace HPAC.EditorTools
             so.FindProperty("statusText").objectReferenceValue = status;
             so.ApplyModifiedPropertiesWithoutUndo();
 
-            // Place camera near the P start tile and leave XR camera replacement explicit.
-            camera.transform.position = new Vector3(-7.2f + 1.2f, 1.65f, 7.2f - 1.2f);
             EditorSceneManager.SaveScene(scene, "Assets/Scenes/HPAC_Prototype.unity");
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene("Assets/Scenes/HPAC_Prototype.unity", true) };
             Selection.activeGameObject = maze;

@@ -2,8 +2,8 @@
 
 Project ID: HPAC-001  
 Repository: https://github.com/PhilColbert/PacMan-Mixed-Reality  
-Current version: 0.3  
-Status: First Unity gameplay source scaffold in progress; no playable build yet.
+Current version: 0.4  
+Status: First Unity gameplay source scaffold committed; not compiled or device-tested.
 
 ## Purpose
 Build a first-person mixed-reality Pac-Man-inspired game for Meta Quest 3. The player physically moves through a human-scale maze overlaid on a real environment.
@@ -44,7 +44,7 @@ Build a first-person mixed-reality Pac-Man-inspired game for Meta Quest 3. The p
 
 ## Milestones
 1. Project records and repository baseline — complete.
-2. Unity gameplay source scaffold — in progress.
+2. Unity gameplay source scaffold — committed; static grid validation performed.
 3. Quest passthrough, tracking, calibration and virtual wall rendering — not verified.
 4. Human-scale maze and navigation.
 5. Pellets, score, power pellets, ghosts and lives.

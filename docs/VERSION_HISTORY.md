@@ -1,12 +1,15 @@
 # Version History
 
 ## 0.1 — Repository and specification baseline
-- Confirmed repository exists and is empty before adding files.
+- Confirmed repository exists and was empty before adding files.
 - Added initial project records only.
-- No game source code, Unity project, audio binaries or playable build created.
-- Verification: repository metadata inspected; contents confirmed empty before writes; commits must be checked after creation.
 
 ## 0.2 — Audio sourcing research
-- Added audio asset sourcing requirement and candidate CC0 sources to review.
-- No downloaded or integrated audio files at this stage.
-- Original Pac-Man audio remains unlicensed for this project unless permission is obtained.
+- Recorded candidate CC0 audio sources and official licensing route.
+- No audio downloaded or integrated.
+
+## 0.3 — First gameplay source scaffold
+- Added Unity C# source for maze generation, player proximity collection, scoring/lives/power state, ghost movement and HUD.
+- Added setup instructions and explicit XR/passthrough limitations.
+- No Unity editor available in this workflow; source is not compiled or device-tested.
+- Audio register is carried forward unchanged from 0.2.

@@ -18,3 +18,9 @@
 - Added Unity 6.3 setup and integration status documentation.
 - Existing gameplay source files are CARRIED FORWARD unchanged from v0.4; no rebuild or compilation claim.
 - Not yet compiled, run, Android-built or device-tested. Meta XR SDK/passthrough remains an explicit integration requirement.
+
+## 0.6 — Installed Unity patch correction (HPAC-CHG-006)
+- Updated ProjectSettings/ProjectVersion.txt from 6000.3.0f1 to 6000.3.2f1, matching the Unity 6.3 LTS installation visible in the user's screenshot.
+- Updated setup instructions, manifest, change register and README.
+- All gameplay scripts, package declarations and editor utility are CARRIED FORWARD unchanged from v0.5.
+- This is a metadata/documentation correction only. Unity import, compilation, scene generation, Android build and Quest device testing remain unverified.

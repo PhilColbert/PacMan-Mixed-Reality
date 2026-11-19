@@ -15,3 +15,5 @@
 | HPAC-CHG-010 | Fix Unity 6 prototype scene generator font exception | 0.9 | Replace obsolete built-in Arial.ttf reference with LegacyRuntime.ttf in editor scene generator; update records only | Source correction committed; local scene generation must be rerun to verify | 1.0 |
 
 | HPAC-CHG-011 | Ensure generated prototype scene contains visible maze geometry before saving | 1.0 | Invoke MazeBuilder.Build() from the Editor generator after creating the Maze object; update project records | Source correction committed; Unity scene regeneration and visual validation required | 1.1 |
+
+| HPAC-CHG-012 | Generate maze walls in both grid directions | 1.1 | Determine wall orientation from adjacent wall cells; create horizontal and vertical segments for straight runs and junctions; update records | Source correction committed; Unity regeneration and visual validation required | 1.2 |

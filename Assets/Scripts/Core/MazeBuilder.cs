@@ -1,5 +1,4 @@
 using UnityEngine;
-
 namespace PacManMR
 {
     public class MazeBuilder : MonoBehaviour
@@ -10,94 +9,95 @@ namespace PacManMR
         [SerializeField] private Material wallMaterial;
         [SerializeField] private Material pelletMaterial;
         [SerializeField] private Material powerPelletMaterial;
+        [SerializeField] private Material houseMaterial;
+        [SerializeField] private Material gateMaterial;
         [SerializeField] private float originHeight;
-
         private void Start() => Build();
-
         public void Build()
         {
             if (mazeRoot == null) mazeRoot = transform;
-            foreach (Transform child in mazeRoot) Destroy(child.gameObject);
-
+            for (int i = mazeRoot.childCount - 1; i >= 0; i--)
+            {
+                GameObject child = mazeRoot.GetChild(i).gameObject;
+                if (Application.isPlaying) Destroy(child); else DestroyImmediate(child);
+            }
             foreach (var cell in MazeDefinition.Cells())
             {
-                Vector3 position = MazeDefinition.CellToWorld(cell.row, cell.col, transform.position);
-                position.y = transform.position.y + originHeight;
+                Vector3 p = MazeDefinition.CellToWorld(cell.row, cell.col, transform.position);
+                p.y = transform.position.y + originHeight;
                 switch (cell.value)
                 {
-                    case '#':
-                        bool horizontal = IsWall(cell.row, cell.col - 1) || IsWall(cell.row, cell.col + 1);
-                        bool vertical = IsWall(cell.row - 1, cell.col) || IsWall(cell.row + 1, cell.col);
-                        if (!horizontal && !vertical) horizontal = true;
-                        CreateWall(position, horizontal, vertical);
-                        break;
-                    case '.': CreatePickup(position, false); break;
-                    case 'o': CreatePickup(position, true); break;
-                    case 'P':
-                        if (playerStart != null) playerStart.position = position + Vector3.up * 1.6f;
-                        break;
-                    case 'G': CreateGhost(position); break;
+                    case '#': CreateWallTile(p); break;
+                    case '.': CreatePickup(p, false); break;
+                    case 'o': CreatePickup(p, true); break;
+                    case 'H': CreateHouseTile(p); break;
+                    case '-': CreateGate(p); break;
                 }
             }
+            Vector3 player = MazeDefinition.CellToWorld(MazeDefinition.PlayerStart.x, MazeDefinition.PlayerStart.y, transform.position);
+            if (playerStart != null) playerStart.position = player + Vector3.up * 1.6f;
+            foreach (Vector2 start in MazeDefinition.GhostStarts)
+                CreateGhost(MazeDefinition.CellToWorld(start.x, start.y, transform.position) + Vector3.up * 0.8f);
         }
-
-        private static bool IsWall(int row, int col)
+        private void CreateWallTile(Vector3 p)
         {
-            if (row < 0 || row >= MazeDefinition.Rows.Length) return false;
-            if (col < 0 || col >= MazeDefinition.Rows[row].Length) return false;
-            return MazeDefinition.Rows[row][col] == '#';
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            go.name = "Maze Wall Tile"; go.transform.SetParent(mazeRoot, true);
+            go.transform.position = p + Vector3.up * (MazeDefinition.WallHeight * 0.5f);
+            go.transform.localScale = new Vector3(MazeDefinition.TileSize, MazeDefinition.WallHeight, MazeDefinition.TileSize);
+            if (wallMaterial != null) go.GetComponent<Renderer>().sharedMaterial = wallMaterial;
         }
-
-        private void CreateWall(Vector3 floorPosition, bool horizontal, bool vertical)
+        private void CreateHouseTile(Vector3 p)
         {
-            if (horizontal) CreateWallSegment(floorPosition, true);
-            if (vertical) CreateWallSegment(floorPosition, false);
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            go.name = "Ghost House Floor"; go.transform.SetParent(mazeRoot, true);
+            go.transform.position = p + Vector3.down * 0.015f;
+            go.transform.localScale = new Vector3(MazeDefinition.TileSize, 0.03f, MazeDefinition.TileSize);
+            if (houseMaterial != null) go.GetComponent<Renderer>().sharedMaterial = houseMaterial;
+            RemoveCollider(go);
         }
-
-        private void CreateWallSegment(Vector3 floorPosition, bool horizontal)
+        private void CreateGate(Vector3 p)
         {
-            var wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            wall.name = horizontal ? "Maze Wall Horizontal" : "Maze Wall Vertical";
-            wall.transform.SetParent(mazeRoot, true);
-            wall.transform.position = floorPosition + Vector3.up * (MazeDefinition.WallHeight * 0.5f);
-            wall.transform.localScale = horizontal
-                ? new Vector3(MazeDefinition.TileSize, MazeDefinition.WallHeight, MazeDefinition.WallThickness)
-                : new Vector3(MazeDefinition.WallThickness, MazeDefinition.WallHeight, MazeDefinition.TileSize);
-            if (wallMaterial != null) wall.GetComponent<Renderer>().sharedMaterial = wallMaterial;
-            wall.layer = LayerMask.NameToLayer("Default");
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            go.name = "Ghost House Gate"; go.transform.SetParent(mazeRoot, true);
+            go.transform.position = p + Vector3.up * 0.72f;
+            go.transform.localScale = new Vector3(MazeDefinition.TileSize, 0.08f, 0.06f);
+            if (gateMaterial != null) go.GetComponent<Renderer>().sharedMaterial = gateMaterial;
         }
-
-        private void CreatePickup(Vector3 floorPosition, bool power)
+        private void CreatePickup(Vector3 p, bool power)
         {
-            var pickup = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            pickup.name = power ? "Power Pellet" : "Pellet";
-            pickup.transform.SetParent(mazeRoot, true);
-            pickup.transform.position = floorPosition + Vector3.up * 0.85f;
-            float diameter = power ? 0.28f : 0.11f;
-            pickup.transform.localScale = Vector3.one * diameter;
-            var collider = pickup.GetComponent<SphereCollider>();
-            collider.isTrigger = true;
-            Destroy(pickup.GetComponent<Rigidbody>());
-            var collectible = pickup.AddComponent<Collectible>();
-            collectible.Configure(power);
-            var renderer = pickup.GetComponent<Renderer>();
-            if (power ? powerPelletMaterial != null : pelletMaterial != null)
-                renderer.sharedMaterial = power ? powerPelletMaterial : pelletMaterial;
+            var go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            go.name = power ? "Power Pellet" : "Pellet"; go.transform.SetParent(mazeRoot, true);
+            go.transform.position = p + Vector3.up * 0.85f;
+            go.transform.localScale = Vector3.one * (power ? 0.28f : 0.11f);
+            go.GetComponent<SphereCollider>().isTrigger = true;
+            RemoveRigidbody(go);
+            go.AddComponent<Collectible>().Configure(power);
+            Material mat = power ? powerPelletMaterial : pelletMaterial;
+            if (mat != null) go.GetComponent<Renderer>().sharedMaterial = mat;
         }
-
-        private void CreateGhost(Vector3 floorPosition)
+        private void CreateGhost(Vector3 p)
         {
-            GameObject ghost;
-            if (ghostPrefab != null) ghost = Instantiate(ghostPrefab, floorPosition + Vector3.up * 0.8f, Quaternion.identity, mazeRoot);
+            GameObject go;
+            if (ghostPrefab != null) go = Instantiate(ghostPrefab, p, Quaternion.identity, mazeRoot);
             else
             {
-                ghost = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                ghost.transform.SetParent(mazeRoot, true);
-                ghost.transform.position = floorPosition + Vector3.up * 0.8f;
-                ghost.transform.localScale = new Vector3(0.65f, 0.8f, 0.65f);
-                ghost.AddComponent<GhostController>();
+                go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                go.transform.SetParent(mazeRoot, true); go.transform.position = p;
+                go.transform.localScale = new Vector3(0.65f, 0.8f, 0.65f);
+                go.AddComponent<GhostController>();
             }
-            ghost.name = "Ghost";
+            go.name = "Ghost";
+        }
+        private static void RemoveCollider(GameObject go)
+        {
+            Collider c = go.GetComponent<Collider>(); if (c == null) return;
+            if (Application.isPlaying) Destroy(c); else DestroyImmediate(c);
+        }
+        private static void RemoveRigidbody(GameObject go)
+        {
+            Rigidbody rb = go.GetComponent<Rigidbody>(); if (rb == null) return;
+            if (Application.isPlaying) Destroy(rb); else DestroyImmediate(rb);
         }
     }
 }

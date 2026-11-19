@@ -1,12 +1,14 @@
 # Unity 6.3 project setup
 
-This repository is now structured as a Unity project targeting Unity 6.3 LTS (Editor version recorded as 6000.3.0f1). Open the repository root in Unity Hub, not the earlier empty project you created separately.
+This repository is structured as a Unity project targeting Unity 6.3 LTS, Editor version **6000.3.2f1**. This matches the Unity Hub installation shown by the user. Open the repository root in Unity Hub, not the earlier empty project created separately.
 
 ## First open
-1. Let Unity resolve packages and finish importing.
-2. Open **Tools > HPAC > Generate Prototype Scene**.
-3. Save and open `Assets/Scenes/HPAC_Prototype.unity`.
-4. Check Console for compilation errors before pressing Play.
+1. In Unity Hub, select the installed **Unity 6.3 LTS (6000.3.2f1)** Editor.
+2. Open the extracted repository root as the project.
+3. Let Unity resolve packages and finish importing.
+4. Open **Tools > HPAC > Generate Prototype Scene**.
+5. Save and open Assets/Scenes/HPAC_Prototype.unity.
+6. Check Console for compilation errors before pressing Play.
 
 ## Quest 3 integration status
 The project includes Unity XR Management and OpenXR package dependencies. It does **not** include Meta's proprietary Meta XR SDK package or a verified passthrough configuration. Install the current Meta XR SDK using Meta's official Unity setup instructions, enable Quest support and passthrough, and replace the generated desktop preview camera with the Meta XR camera rig. Do not deploy to a headset until that configuration is complete.

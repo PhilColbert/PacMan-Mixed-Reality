@@ -39,3 +39,8 @@
 - Replaced the obsolete built-in `Arial.ttf` lookup in `Assets/Editor/HPACProjectSetup.cs` with `LegacyRuntime.ttf`, as directed by the Unity 6 runtime exception reported during scene generation.
 - No gameplay scripts, maze data, scene dimensions, camera placement, HUD layout or package dependencies changed.
 - Other unchanged files are CARRIED FORWARD. Source edit is committed; scene generation and subsequent Unity compilation remain unverified until rerun locally.
+
+## 1.1 — Build maze geometry during scene generation (HPAC-CHG-011)
+- The generator now explicitly calls `MazeBuilder.Build()` before saving the prototype scene. The prior implementation relied only on `Start()`, which does not run while the Editor is generating/saving the scene; this left the saved scene with only the floor until entering Play mode.
+- No maze layout, dimensions, gameplay scripts, camera placement or HUD layout changed.
+- Scene regeneration and visual validation remain unverified until performed in the user's Unity Editor.

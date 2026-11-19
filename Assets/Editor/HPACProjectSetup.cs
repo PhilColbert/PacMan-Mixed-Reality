@@ -45,6 +45,7 @@ namespace HPAC.EditorTools
             var maze = new GameObject("Maze");
             var builder = maze.AddComponent<MazeBuilder>();
             maze.transform.position = Vector3.zero;
+            builder.Build(); // Build once in edit mode so the generated scene contains visible maze geometry.
 
             var hudCanvas = new GameObject("HUD", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             var canvas = hudCanvas.GetComponent<Canvas>();

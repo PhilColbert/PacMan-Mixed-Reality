@@ -11,3 +11,5 @@
 | HPAC-CHG-007 | Correct Editor metadata after closer inspection of Unity Hub screenshot | 0.6 | Set exact patch to 6000.3.2f0 and update project records | Incorrect target 6000.3.2f0; superseded by CHG-008 | 0.7 |
 | HPAC-CHG-008 | Set Unity Editor metadata to the user's confirmed installed version | 0.7 | Update ProjectVersion.txt with exact version and release changeset; update project records only | Target set to 6000.3.26f1 with changeset de8167e7440c; Unity opening/compilation still to be verified locally | 0.8 |
 | HPAC-CHG-009 | Fix HudPresenter compile error caused by missing Unity UI package | 0.8 | Add com.unity.ugui 2.0.0 to Unity package manifest; update records | Dependency declared; Unity package resolution and compilation awaiting local verification | 0.9 |
+
+| HPAC-CHG-010 | Fix Unity 6 prototype scene generator font exception | 0.9 | Replace obsolete built-in Arial.ttf reference with LegacyRuntime.ttf in editor scene generator; update records only | Source correction committed; local scene generation must be rerun to verify | 1.0 |

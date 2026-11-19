@@ -30,3 +30,7 @@
 - Added the release changeset identifier de8167e7440c to m_EditorVersionWithRevision, based on the official Unity 6000.3.26f1 release page.
 - Updated README, setup instructions, manifest and change register. Gameplay scripts, packages and editor utility remain CARRIED FORWARD unchanged.
 - GitHub file readback performed. Unity Hub opening, import, compilation, scene generation, Android build and Quest device testing remain unverified.
+
+## 0.9 — Unity UI dependency correction (HPAC-CHG-009)
+- Added com.unity.ugui 2.0.0 to Packages/manifest.json. The existing HudPresenter.cs uses UnityEngine.UI, which is supplied by the UGUI package; the prior manifest declared only the built-in UI module and omitted UGUI.
+- No C# source files changed. Package resolution and compilation remain to be verified in the local Unity Editor.

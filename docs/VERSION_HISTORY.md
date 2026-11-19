@@ -13,3 +13,9 @@
 - Added setup instructions and explicit XR/passthrough limitations.
 - No Unity editor available in this workflow; source is not compiled or device-tested.
 - Audio register is carried forward unchanged from 0.2.
+
+## 0.4 — Maze grid correction
+- Static inspection found inconsistent row lengths in the first 15×15 maze draft (some rows were 16 columns).
+- Logged HPAC-CHG-004 before editing the source.
+- Corrected all rows to exactly 15 columns; verification re-run pending readback.
+- No unrelated source files changed.
